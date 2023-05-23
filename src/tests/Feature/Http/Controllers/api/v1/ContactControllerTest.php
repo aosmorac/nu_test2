@@ -137,4 +137,29 @@ class ContactControllerTest extends TestCase
             ', contact saved successfully'
         );
     }
+
+    /**
+     * @test
+     *
+     * @return void
+     */
+    public function user_can_not_set_a_contact_form_with_an_invalid_phone()
+    {
+        $contact_data = [
+            'name'  => 'Peter Parker',
+            'email' => 'test@email.com',
+            'phone' => '1234'
+        ];
+
+        $response = $this->json('POST', self::ENDPOINT, $contact_data);
+
+        $response->assertStatus(422);
+        $response->assertJson([
+            'errors' => [
+                'phone' => [
+                    'The phone format is invalid.'
+                ]
+            ]
+        ]);
+    }
 }

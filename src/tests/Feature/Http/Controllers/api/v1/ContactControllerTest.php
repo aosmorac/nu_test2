@@ -101,5 +101,12 @@ class ContactControllerTest extends TestCase
         $response = $this->json('POST', self::ENDPOINT, $contact_data);
 
         $response->assertStatus(422);
+        $response->assertJson([
+            'errors' => [
+                'email' => [
+                    'The email must be a valid email address.'
+                ]
+            ]
+        ]);
     }
 }

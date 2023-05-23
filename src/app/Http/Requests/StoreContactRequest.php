@@ -15,7 +15,7 @@ class StoreContactRequest extends FormRequest
     {
         return [
             'name'  => 'required|string|min:2',
-            'email' => 'required|string|min:2',
+            'email' => 'required|email',
         ];
     }
 }

@@ -37,7 +37,8 @@ class ContactControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertJsonPath(
             'message', $contact_data['name'] . ', ' .
-            $contact_data['email'] .
+            $contact_data['email'] . ', ' .
+            $contact_data['phone'] .
             ', contact saved successfully'
         );
     }
@@ -83,7 +84,8 @@ class ContactControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertJsonPath(
             'message', $contact_data['name'] . ', ' .
-            $contact_data['email'] .
+            $contact_data['email'] . ', ' .
+            $contact_data['phone'] .
             ', contact saved successfully'
         );
     }

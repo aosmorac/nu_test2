@@ -22,11 +22,12 @@ class ContactController extends Controller
         try {
             $contact = Contact::create([
                 'name'  => $request->name,
-                'email' => $request->email
+                'email' => $request->email,
+                'phone' => $request->phone
             ]);
 
             return response()->json(
-                ['message' => $contact->name . ', ' . $contact->email . ", contact saved successfully"],
+                ['message' => $contact->name . ', ' . $contact->email . ', ' . $contact->phone . ", contact saved successfully"],
                 200
             );
 

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Auth
+Route::prefix('/contact')->group(function() {
+    Route::post('', 'App\Http\Controllers\api\v1\ContactController@store');
 });

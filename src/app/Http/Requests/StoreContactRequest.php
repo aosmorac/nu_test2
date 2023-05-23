@@ -14,9 +14,10 @@ class StoreContactRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'  => 'required|string|min:2',
-            'email' => 'required|email',
-            'phone' => 'required|string|regex:/^[0-9]{7,15}$/'
+            'name'    => 'required|string|min:2',
+            'email'   => 'required|email',
+            'phone'   => 'required|string|regex:/^[0-9]{7,15}$/',
+            'comment' => 'nullable|string|min:3|max:300',
         ];
     }
 }

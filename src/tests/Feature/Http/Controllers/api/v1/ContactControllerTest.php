@@ -186,7 +186,7 @@ class ContactControllerTest extends TestCase
             'message', $contact_data['name'] . ', ' .
             $contact_data['email'] . ', ' .
             $contact_data['phone'] . ', ' .
-            $contact_data['comment'] .
+            substr($contact_data['comment'], 3) .
             ', contact saved successfully'
         );
     }

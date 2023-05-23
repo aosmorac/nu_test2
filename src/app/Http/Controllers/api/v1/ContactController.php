@@ -21,13 +21,20 @@ class ContactController extends Controller
     {
         try {
             $contact = Contact::create([
-                'name'  => $request->name,
-                'email' => $request->email,
-                'phone' => $request->phone
+                'name'    => $request->name,
+                'email'   => $request->email,
+                'phone'   => $request->phone,
+                'comment' => $request->comment ?? ''
             ]);
 
             return response()->json(
-                ['message' => $contact->name . ', ' . $contact->email . ', ' . $contact->phone . ", contact saved successfully"],
+                [
+                    'message' =>    $contact->name . ', ' .
+                                    $contact->email . ', ' .
+                                    $contact->phone .
+                                    ($contact->comment ? (', ' . substr($contact->comment, 3)) : '') .
+                                    ", contact saved successfully"
+                ],
                 200
             );
 

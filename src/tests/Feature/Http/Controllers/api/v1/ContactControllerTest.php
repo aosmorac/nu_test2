@@ -85,4 +85,21 @@ class ContactControllerTest extends TestCase
             ', contact saved successfully'
         );
     }
+
+    /**
+     * @test
+     *
+     * @return void
+     */
+    public function user_can_not_set_a_contact_form_with_an_invalid_email()
+    {
+        $contact_data = [
+            'name' => 'Peter Parker',
+            'email' => 'test'
+        ];
+
+        $response = $this->json('POST', self::ENDPOINT, $contact_data);
+
+        $response->assertStatus(422);
+    }
 }

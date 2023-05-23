@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api\v1;
 
+use App\Events\ContactStored;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreContactRequest;
 use App\Models\Contact;
@@ -26,6 +27,8 @@ class ContactController extends Controller
                 'phone'   => $request->phone,
                 'comment' => $request->comment ?? ''
             ]);
+
+            event(new ContactStored($contact));
 
             return response()->json(
                 [

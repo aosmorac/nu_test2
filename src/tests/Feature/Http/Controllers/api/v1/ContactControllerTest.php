@@ -35,4 +35,27 @@ class ContactControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertJsonPath('message', $contact_data['name'] . ' message saved successfully');
     }
+
+    /**
+     * @test
+     *
+     * @return void
+     */
+    public function user_can_not_set_a_contact_form_with_name_shorter_than_two_chars()
+    {
+        $contact_data = [
+            'name' => 'P'
+        ];
+
+        $response = $this->json('POST', self::ENDPOINT, $contact_data);
+
+        $response->assertStatus(422);
+        $response->assertJson([
+            'errors' => [
+                'name' => [
+                    'The name must be at least 2 characters.'
+                ]
+            ]
+        ]);
+    }
 }

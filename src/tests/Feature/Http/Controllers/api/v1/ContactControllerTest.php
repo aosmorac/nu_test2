@@ -162,4 +162,32 @@ class ContactControllerTest extends TestCase
             ]
         ]);
     }
+
+
+
+    /**
+     * @test
+     *
+     * @return void
+     */
+    public function user_can_set_a_contact_form_with_comment()
+    {
+        $contact_data = [
+            'name'    => 'Peter Parker',
+            'email'   => 'test@email.com',
+            'phone'   => '123456789',
+            'comment' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis maximus dui. Vestibulum sodales pellentesque eleifend.'
+        ];
+
+        $response = $this->json('POST', self::ENDPOINT, $contact_data);
+
+        $response->assertStatus(200);
+        $response->assertJsonPath(
+            'message', $contact_data['name'] . ', ' .
+            $contact_data['email'] . ', ' .
+            $contact_data['phone'] . ', ' .
+            $contact_data['comment'] .
+            ', contact saved successfully'
+        );
+    }
 }

@@ -33,7 +33,7 @@ class ContactControllerTest extends TestCase
         $response = $this->json('POST', self::ENDPOINT, $contact_data);
 
         $response->assertStatus(200);
-        $response->assertJsonPath('message', $contact_data['name'] . ' message saved successfully');
+        $response->assertJsonPath('message', $contact_data['name'] . ' contact saved successfully');
     }
 
     /**
@@ -57,5 +57,27 @@ class ContactControllerTest extends TestCase
                 ]
             ]
         ]);
+    }
+
+    /**
+     * @test
+     *
+     * @return void
+     */
+    public function user_can_set_a_contact_form_with_email()
+    {
+        $contact_data = [
+            'name' => 'Peter Parker',
+            'email' => 'test@email.com'
+        ];
+
+        $response = $this->json('POST', self::ENDPOINT, $contact_data);
+
+        $response->assertStatus(200);
+        $response->assertJsonPath(
+            'message', $contact_data['name'] . ', ' .
+            $contact_data['email'] .
+            ', contact saved successfully'
+        );
     }
 }

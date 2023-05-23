@@ -24,7 +24,7 @@ class ContactController extends Controller
                 'name' => $request->name
             ]);
 
-            return response()->json(['message' => $contact->name . " message saved successfully"], 200);
+            return response()->json(['message' => $contact->name . " contact saved successfully"], 200);
 
         } catch (\Throwable $e) {
             return response()->json(['message' => $e->getMessage()], 500);

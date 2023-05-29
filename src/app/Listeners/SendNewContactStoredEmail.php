@@ -8,7 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 
-class SendNewContactStoredEmail
+class SendNewContactStoredEmail implements ShouldQueue
 {
     /**
      * Create the event listener.

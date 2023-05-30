@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Auth
 Route::prefix('/contact')->group(function() {
     Route::post('', 'App\Http\Controllers\api\v1\ContactController@store');
+});
+
+// Auth
+Route::prefix('/auth')->group(function() {
+    Route::post('/register', 'App\Http\Controllers\api\v1\AuthController@register');
 });

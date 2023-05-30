@@ -2,8 +2,6 @@
 
 namespace Tests\Feature\Http\Controllers\api\v1;
 
-use Tests\TestCase;
-
 /**
  * Class AuthControllerTest
  *
@@ -12,7 +10,7 @@ use Tests\TestCase;
  *
  * @package Tests\Feature\Http\Controllers\api\v1
  */
-class AuthControllerTest extends TestCase
+class AuthControllerTest extends TestApi
 {
     /**
      * Political party api endpoint
@@ -27,13 +25,15 @@ class AuthControllerTest extends TestCase
     public function user_can_register_a_new_user()
     {
         $new_user_data = [
-            'name' => 'Test Name',
-            'phone' => '3133929826',
-            'password' => '123456'
+            'name'      => 'Test Name',
+            'email'     => 'test@email.com',
+            'phone'     => '3133929826',
+            'password'  => '123456'
         ];
 
-        $response = $this->withHeader('Authorization', 'Bearer ' . $this->getToken())
-            ->json('POST', self::ENDPOINT . '/register', $new_user_data);
+        $response = $this->json('POST', self::ENDPOINT . '/register', $new_user_data);
+
+//        print_r($response); die;
 
         $response->assertStatus(200);
         $response->assertJsonPath('message', 'User registered successfully');

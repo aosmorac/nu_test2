@@ -28,7 +28,7 @@ class ContactController extends Controller
                 'comment' => $request->comment ?? ''
             ]);
 
-            event(new ContactStored($contact));
+            //event(new ContactStored($contact));
 
             return response()->json(
                 [

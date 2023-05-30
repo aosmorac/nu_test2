@@ -15,11 +15,11 @@ class AuthController extends Controller
     /**
      * Register a new user
      *
-     * @param Request $request
+     * @param RegisterAuthRequest $request
      *
      * @return JsonResponse
      */
-    public function register(Request $request): JsonResponse
+    public function register(RegisterAuthRequest $request): JsonResponse
     {
         try {
             User::create([

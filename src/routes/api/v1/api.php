@@ -17,5 +17,5 @@ use Illuminate\Support\Facades\Route;
 // Auth
 Route::prefix('/auth')->group(function() {
     Route::post('/register', 'App\Http\Controllers\api\v1\AuthController@register');
-    Route::post('/register/verify/{user_id}', 'App\Http\Controllers\api\v1\AuthController@verifyUser');
+    Route::post('/register/verify/{user_id}', 'App\Http\Controllers\api\v1\AuthController@verifyNewUser');
 });

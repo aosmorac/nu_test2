@@ -108,9 +108,33 @@ class AuthControllerTest extends TestApi
             ['verify_code' => 1234]
         );
 
-//        print_r($response); die;
-
         $response->assertStatus(200);
         $response->assertJsonPath('message', 'User verified successfully');
+    }
+
+    /**
+     * @test
+     *
+     * @return void
+     */
+    public function user_get_right_message_if_try_to_validate_a_user_previously_validated()
+    {
+        $user = User::create([
+            'name'                      => 'Test Name',
+            'email'                     => 'test@myadomain.com',
+            'phone_number'              => '3133929844',
+            'verify_code'               => 1234,
+            'phone_number_verified_at'  => now(),
+            'password'                  => Hash::make('123456'),
+        ]);
+
+        $response = $this->json(
+            'POST',
+            self::ENDPOINT . "/register/verify/$user->id",
+            ['verify_code' => 1234]
+        );
+
+        $response->assertStatus(200);
+        $response->assertJsonPath('message', 'User verified previously.');
     }
 }

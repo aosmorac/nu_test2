@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'telesign' => [
+        'customer_id' => env('TELESIGN_CUSTOMER_ID'),
+        'api_key' => env('TELESIGN_API_KEY'),
+    ],
+
 ];

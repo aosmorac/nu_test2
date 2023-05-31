@@ -36,8 +36,6 @@ class AuthControllerTest extends TestApi
 
         $response = $this->json('POST', self::ENDPOINT . '/register', $new_user_data);
 
-//        print_r($response); die;
-
         $response->assertStatus(200);
         $response->assertJsonPath('message', 'User registered successfully');
     }
@@ -87,5 +85,32 @@ class AuthControllerTest extends TestApi
 
         $response->assertStatus(422);
         $response->assertJsonStructure(['errors' => ['phone']]);
+    }
+
+    /**
+     * @test
+     *
+     * @return void
+     */
+    public function user_can_validate_new_user_with_code()
+    {
+        $user = User::create([
+                'name'          => 'Test Name',
+                'email'         => 'test@myadomain.com',
+                'phone_number'  => '3133929844',
+                'verify_code'   => 1234,
+                'password'      => Hash::make('123456'),
+            ]);
+
+        $response = $this->json(
+            'POST',
+            self::ENDPOINT . "/register/verify/$user->id",
+            ['verify_code' => 1234]
+        );
+
+//        print_r($response); die;
+
+        $response->assertStatus(200);
+        $response->assertJsonPath('message', 'User verified successfully');
     }
 }

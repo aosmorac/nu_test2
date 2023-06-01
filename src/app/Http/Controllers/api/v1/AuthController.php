@@ -76,6 +76,7 @@ class AuthController extends Controller
             }
 
             $user->phone_number_verified_at = now();
+            $user->verify_code = null;
             $user->save();
 
             return response()->json(['message' => 'User verified successfully'], 200);
@@ -85,6 +86,14 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Login endpoint
+     *
+     * It generates a token to access to the second step endpoint and send a verify sms.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function getLoginToken(Request $request): JsonResponse
     {
         try {
@@ -102,6 +111,48 @@ class AuthController extends Controller
             $access_token = $user->createToken('authToken', ['user:verify-login'])->accessToken;
 
             event(new LoginFirstStepDone($user));
+
+            return response()->json(
+                [
+                    'name'          => $user->name,
+                    'email'         => $user->email,
+                    'phone_number'  => $user->phone_number,
+                    'access_token'  => $access_token,
+                ],
+                200
+            );
+
+        } catch (\Throwable $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
+
+    /**
+     * Verify new user using the verify code sent to the client
+     *
+     * @param Request $request
+     * @param int $user_id
+     *
+     * @return JsonResponse
+     */
+    public function getAccessToken(Request $request): JsonResponse
+    {
+        try {
+            $user = $request->user();
+            $verify_code = $request->verify_code;
+
+            if ($verify_code != $user->verify_code) {
+                return response()->json(['message' => 'Code does not match.'], 404);
+            }
+
+            if (!$user->phone_number_verified_at) {
+                $user->phone_number_verified_at = now();
+            }
+
+            $user->verify_code = null;
+            $user->save();
+
+            $access_token = $user->createToken('authToken', ['user:all'])->accessToken;
 
             return response()->json(
                 [

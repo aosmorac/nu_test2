@@ -34,6 +34,7 @@ class AuthServiceProvider extends ServiceProvider
 
         Passport::tokensCan([
             'user:verify-login' => 'Two step authentication.',
+            'user:all'          => 'Complete access.',
         ]);
 
         Passport::setDefaultScope([]);

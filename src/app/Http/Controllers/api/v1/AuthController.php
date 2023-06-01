@@ -84,4 +84,35 @@ class AuthController extends Controller
         }
     }
 
+    public function getLoginToken(Request $request): JsonResponse
+    {
+        try {
+            $login = $request->validate([
+                'email' => 'required|string',
+                'password' => 'required|string',
+            ]);
+
+            if (!Auth::attempt($login)) {
+                return response()->json(['message' => 'Your email or password are incorrect.'], 403);
+            }
+
+            $user = Auth::user();
+
+            $access_token = $user->createToken('authToken', ['user:verify-login'])->accessToken;
+
+            return response()->json(
+                [
+                    'name'          => $user->name,
+                    'email'         => $user->email,
+                    'phone_number'  => $user->phone_number,
+                    'access_token'  => $access_token,
+                ],
+                200
+            );
+
+        } catch (\Throwable $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
+
 }

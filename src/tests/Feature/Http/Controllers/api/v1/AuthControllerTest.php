@@ -137,4 +137,35 @@ class AuthControllerTest extends TestApi
         $response->assertStatus(200);
         $response->assertJsonPath('message', 'User verified previously.');
     }
+
+    /**
+     * @test
+     *
+     * @return void
+     */
+    public function user_can_get_access_token_login_first_step()
+    {
+        $user = User::create([
+            'name'                      => 'Test Name',
+            'email'                     => 'test@myadomain.com',
+            'phone_number'              => '3133929844',
+            'verify_code'               => 1234,
+            'phone_number_verified_at'  => now(),
+            'password'                  => Hash::make('123456'),
+        ]);
+
+        $response = $this->json(
+            'POST',
+            self::ENDPOINT . "/login",
+            [
+                'email'     => 'test@myadomain.com',
+                'password'  => '123456'
+            ]
+        );
+
+        $response_array = json_decode($response->content(), true);
+
+        $response->assertStatus(200);
+        $this->assertArrayHasKey('access_token', $response_array);
+    }
 }

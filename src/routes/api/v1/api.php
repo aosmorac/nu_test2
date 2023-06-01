@@ -21,3 +21,8 @@ Route::prefix('/auth')->group(function() {
     Route::post('/login', 'App\Http\Controllers\api\v1\AuthController@getLoginToken');
     Route::post('/login/verify', 'App\Http\Controllers\api\v1\AuthController@getAccessToken')->middleware(['auth:api', 'scopes:user:verify-login']);
 });
+
+
+Route::prefix('/vin')->group(function() {
+    Route::get('/search/{vin}', 'App\Http\Controllers\api\v1\VinController@search')->middleware(['auth:api', 'scopes:user:all']);
+});

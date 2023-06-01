@@ -39,7 +39,7 @@ class AuthController extends Controller
 
             return response()->json(['message' => 'User registered successfully'], 200);
 
-        } catch (TelesignClientCouldNotSendVerifySMSException $e) { return response()->json(['message' => $e->getMessage()], 500);
+        } catch (TelesignClientCouldNotSendVerifySMSException $e) {
             // You can use a different logic to manage telesign errors
 
             return response()->json(['message' => $e->getMessage()], 500);

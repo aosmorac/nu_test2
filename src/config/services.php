@@ -36,4 +36,9 @@ return [
         'api_key' => env('TELESIGN_API_KEY'),
     ],
 
+    'vindecoder' => [
+        'api_key' => env('VINDECODER_API_KEY'),
+        'host' => env('VINDECODER_HOST'),
+    ],
+
 ];

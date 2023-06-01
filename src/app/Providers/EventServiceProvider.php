@@ -15,8 +15,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        'App\Events\ContactStored' => [
-            'App\Listeners\SendNewContactStoredEmail',
+        'App\Events\LoginFirstStepDone' => [
+            'App\Listeners\SendLoginVerifySMS',
         ],
     ];
 

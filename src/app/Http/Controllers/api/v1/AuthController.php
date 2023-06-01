@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api\v1;
 
 use App\Classes\Telesign\TelesignClient;
+use App\Events\LoginFirstStepDone;
 use App\Exceptions\TelesignClientCouldNotSendVerifySMSException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterAuthRequest;
@@ -99,6 +100,8 @@ class AuthController extends Controller
             $user = Auth::user();
 
             $access_token = $user->createToken('authToken', ['user:verify-login'])->accessToken;
+
+            event(new LoginFirstStepDone($user));
 
             return response()->json(
                 [

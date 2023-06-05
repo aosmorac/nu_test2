@@ -1,0 +1,322 @@
+{
+	"info": {
+		"_postman_id": "61415837-b168-4072-867c-eccad87bd92a",
+		"name": "Nu_test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3296709"
+	},
+	"item": [
+		{
+			"name": "Store Contact",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Abel",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "abel@email.com",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "comment",
+							"value": "sajfdlkads fsdfhjsdh sadf.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8070/api/v1/contact",
+					"host": [
+						"localhost"
+					],
+					"port": "8070",
+					"path": [
+						"api",
+						"v1",
+						"contact"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Abel",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "abel6@email.com",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "573128120586",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8070/api/v1/auth/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8070",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"register"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "verify_code",
+							"value": "2725",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8070/api/v1/auth/register/verify/9",
+					"host": [
+						"localhost"
+					],
+					"port": "8070",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"register",
+						"verify",
+						"9"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "abel6@email.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8070/api/v1/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8070",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login verify",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNzYwOGM2ZTBlMjEyMDhjNTM1ODE5N2NkNzgwYzUyZGFmM2QxYWRjOWRiZGQ5YTMyZWYxZTgxMjExMTQzMjhjMjg4YzcxM2M5NWNhNWM1MGEiLCJpYXQiOjE2ODU2MjI1NjcuMDczMTE0LCJuYmYiOjE2ODU2MjI1NjcuMDczMTIsImV4cCI6MjAwMTI0MTc2Ny4wNTY0ODcsInN1YiI6IjkiLCJzY29wZXMiOlsidXNlcjp2ZXJpZnktbG9naW4iXX0.qzvuM1Qz-uEFZMxA7TfZyuJPllxc04fVk9Sl5tZQu79eNpLIcPdnyoI2uTbEQH82dnBChQaaHgQ66uAx9fU_PTzkkzdOnZ7MmonqdmaTnv_sCkdqyvPQbc0ekGx8gwSAQX4rPQu2ks9Zh6spWEyXd6uSnpNWdh7RsuB0xMeMpwBz8y_VAVrNEvsTHoaU4DoV_rbCjKfxlGcSFVZ_F1aO9FOrZyxAVyvRMgHwx_dwU4DmAJCT45aAOxLFSIg5kIrDYFawy6aOhIcT2CekS5aQc-hu2Ai8AzfpoQNhF12pxmkrdn994MIRg97EWonQE6Bg_2TO4xU-oFbCJWnEhuADstvJTgLXnCwGvww91LbVqXzBQ9rc1xLGaTwSVyX2o_sX8guHECPyNdB3DIG90amq-H5pjVa0a0wFFKNwa_QJBgAl66MkK3fNYKjLch6cqhj9pgjjqjRqf2XL5_i1JbGzSigwWhVKEcd9wWfz2HM6A0_HQSYY30Ykj49HIOGgzTnYePK68qMWpCzuwLb1vZboqj6ChjQKs3gVB7PsyRzmnrTDmeagC5ODIej4jGgBX5STe5l8cNtCi_fdumvc9n3Gwjmb-3guBV_9FDwB0HOXU5FYb8-9EZf6YSjABnVHbrOfCR9d_HFiTrSsxzHtVXqxUnLr4rT0okKCEJ52aWTC1I0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "verify_code",
+							"value": "6868",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8070/api/v1/auth/login/verify",
+					"host": [
+						"localhost"
+					],
+					"port": "8070",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login",
+						"verify"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search VIN",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZTBmNzc3NWRlMmMxNjVlZWJmODI4YTZiMTdmMjg5OWFlMjQyMGY5ZjU0MjFkNjNmMWM1MjM2NjEzYWUyZTU5NzM3NDMxODVhNTU0MjUwZGEiLCJpYXQiOjE2ODU2MjI1OTEuODEwNDY1LCJuYmYiOjE2ODU2MjI1OTEuODEwNDc2LCJleHAiOjIwMDEyNDE3OTEuNzg2NjM2LCJzdWIiOiI5Iiwic2NvcGVzIjpbInVzZXI6YWxsIl19.TMD8uB3U7_MxjlZgUvozNx1QRoPlVrfTQ5g3q77Gm4F0ZaGt04kNb5H0JzqQ2Q330y8ruY1aRlNSLzUTghS37JFyeW2GlDdYTK-neSqSpuk2eNatHLpPg16BbVK0ClVKSF-wC4dMou8AUVy88p_9QG412b_cY9cmJRZ4LHGHC32mFvDcXIlpJWkLBAiOwyn9zcqaJzFFjDfQAhCxAmnUqeq8frI0-u9gWyuTPQATYFwfSwVvEv0vmfrjIjn7HEAUa7teTBuKslMrImBXSZXR6vHjiXbt06mxMjHED3WLD-oNalgBW0NigOkx1IHbyqpd7fKAtIGZzU_VgBj5hSNKI9wfMfJL2f_sGle6Ug5SI-DAS3IPwe4_KcBPkiXR9FWh-stUtHmNWc0-AJBNSo4m7n_XL97P76tctvKMeVus8SaT80Toha1eHqNvZQ8JCsvHxRT_TqiCeiQdDtHAm0F48QSuMInbef1Txl8i3KXsypW8J0cwV6KTL9xgZbRW3_CLILBg6tByKXATIoyzmi2krPavGNgODX7sXkkCkgNnbIMdnGsJ1lgSk03qptaa2xN1J5BwX-fvSUBS5OXrfQGhyye2Z7oQd4NQxXNGlDccd_3ntx_jQhAVVqf1m1paquw7m_AsgTurXx2e9ha6LQMpErBSfjQUzbEh0XIhOqQGXJ4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8070/api/v1/vin/search/123",
+					"host": [
+						"localhost"
+					],
+					"port": "8070",
+					"path": [
+						"api",
+						"v1",
+						"vin",
+						"search",
+						"123"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
